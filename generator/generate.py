@@ -77,7 +77,7 @@ for y in range(0, cell_count):
     face_image.putpixel((x_offset + (2 * 4), y_offset + 4), 0xFF181616)
     face_image.putpixel((x_offset + (2 * 4), y_offset + 2), 0xFF181616)
 
-    face_image.paste(top, (0, 0), top)
+    face_image.alpha_composite(top)
 
     current_minutes += 1
 
