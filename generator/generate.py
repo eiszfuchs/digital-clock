@@ -28,8 +28,8 @@ digit_maps = [
 ]
 
 clock_data = {
-    "parent": "item/generated",
-    "textures": {"layer0": "items/clock_1200"},
+    "parent": "minecraft:item/generated",
+    "textures": {"layer0": "digiclock:item/clock_1200"},
     "overrides": [],
 }
 
@@ -72,23 +72,23 @@ for y in range(0, cell_count):
                 "time": ((time + total_steps - start_time - 1) % total_steps)
                 / total_steps
             },
-            "model": "item/clock_{time}".format(time=digits),
+            "model": "digiclock:item/clock_{time}".format(time=digits),
         }
     )
 
     face_data = {
-        "parent": "item/generated",
+        "parent": "minecraft:item/generated",
         "textures": {
-            "layer0": "items/clock_{time}".format(time=digits),
+            "layer0": "digiclock:item/clock_{time}".format(time=digits),
         },
     }
 
     face_image.save(
-        "../assets/minecraft/textures/items/clock_{time}.png".format(time=digits)
+        "../assets/digiclock/textures/item/clock_{time}.png".format(time=digits)
     )
 
     with open(
-        "../assets/minecraft/models/item/clock_{time}.json".format(time=digits), "w"
+        "../assets/digiclock/models/item/clock_{time}.json".format(time=digits), "w"
     ) as face_file:
         json.dump(face_data, face_file, indent="\t")
 
