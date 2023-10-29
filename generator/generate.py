@@ -1,5 +1,7 @@
 import json
 import math
+import os
+import zipfile
 
 from PIL import Image
 
@@ -105,3 +107,19 @@ clock_data["overrides"] = sorted(
 )
 with open("../assets/minecraft/models/item/clock.json", "w") as item_file:
     json.dump(clock_data, item_file, indent="\t")
+
+with zipfile.ZipFile(
+    file="../digital-clock.zip",
+    mode="w",
+    compression=zipfile.ZIP_DEFLATED,
+    compresslevel=9,
+    allowZip64=False,
+) as zip:
+    zip.write("../pack.mcmeta", "pack.mcmeta")
+    zip.write("../pack.png", "pack.png")
+
+    for path, _, files in os.walk("../assets"):
+        for file in files:
+            if not file.startswith("."):
+                file = os.path.join(path, file)
+                zip.write(file, os.path.relpath(file, ".."))
